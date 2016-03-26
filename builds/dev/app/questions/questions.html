@@ -1,0 +1,41 @@
+<div class="jumbotron">
+  <h1>Тестирование</h1>
+</div>
+<div class="row">
+  <form action="" class="col-lg-8 col-md-offset-2" method="post" ng-show="qc.showTest" id="testForm">
+    <div class="panel panel-default" ng-repeat="question in qc.questions">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{question.question}}</h3>
+      </div>
+      <div class="panel-body">
+        <label for="{{$id}}" ng-repeat="answer in question.answers">
+          <input id="{{$id}}" name="{{question.checksum}}" type="{{question.type}}"  ng-model="qc.answers[question.$id-1]" value="{{answer}}" required="required">
+          {{answer}}
+        </label>
+      </div>
+    </div>
+    <input class="btn btn-default" name="button" type="submit" value="Отправить на проверку">
+  </form>
+
+  <div class="col-lg-8 col-md-offset-2" ng-if="qc.showAnswers">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Результаты</h2>
+        <h4>Вы набрали: <span>{{qc.score}}</span> баллов</h4>
+        <h4>Правильных ответов: <span>{{qc.trueAnswersCount}}</span></h4>
+        <h4>Неправильных ответов: <span>{{qc.falseAnswersCount}}</span></h4>
+      </div>
+      <div class="panel-body" id="results">
+        <div class="" ng-repeat="question in qc.questions">
+          <h3 class="panel-title">{{question.question}}</h3>
+          <h4>Ваш ответ: <span style="color: {{qc.getAnswStyle($index)}}">{{qc.answers[question.$id-1]}}</span></h4>
+          <h4>Правильный ответ: <span>{{question.correct}}</span></h4>
+          <br>
+        </div>
+
+      </div>
+    </div>
+    <button class="btn btn-default" name="button" type="button" ng-click="qc.getTest()">Пройти тест еще раз</button>
+
+  </div>
+</div>
