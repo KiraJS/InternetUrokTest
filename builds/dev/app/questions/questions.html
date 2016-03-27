@@ -2,7 +2,7 @@
   <h1>Тестирование</h1>
 </div>
 <div class="row">
-  <form action="" class="col-lg-8 col-md-offset-2" method="post" ng-show="qc.showTest" id="testForm">
+  <form action="" class="col-lg-8 col-md-offset-2" method="post" ng-show="qc.showTest" id="testForm" ng-submit ="qc.showResults($event)">
     <div class="panel panel-default" ng-repeat="question in qc.questions">
       <div class="panel-heading">
         <h3 class="panel-title">{{question.question}}</h3>

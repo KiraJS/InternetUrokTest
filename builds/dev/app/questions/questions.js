@@ -7,6 +7,7 @@
       'test.dbc',
     ])
     .controller('questionsCtrl', questionsController)
+    .constant('FURL', 'https:ç//interneturoktest.firebaseio.com/')
     .run( /*@ngInject*/ function($log) {
       $log.debug('Tasks Run');
     })
@@ -50,18 +51,18 @@
         s.trueAnswers[i] = s.questions[i].correct;
       }
     })
-    s.resetResults = function(){
+    s.resetResults = function() {
       s.trueAnswersCount = 0;
       s.falseAnswersCount = 0;
       s.score = 0;
-      for (var i = 0; i < s.answers.length; i++){
+      for (var i = 0; i < s.answers.length; i++) {
         s.answers[i] = null;
       }
     }
-    s.checkTest = function (){
+    s.checkTest = function() {
       s.questions.$loaded(function() {
-        for(var i=0; i < s.questions.length; i++){
-          if(s.answers[i] == s.trueAnswers[i]) {
+        for (var i = 0; i < s.questions.length; i++) {
+          if (s.answers[i] == s.trueAnswers[i]) {
             s.score = s.score + s.questions[i].score;
             s.trueAnswersCount++
           } else {
@@ -70,31 +71,31 @@
         }
       })
     }
-    s.getAnswStyle = function (_index){
-      for (var i = 0; i < s.answers.length; i++){
-        if(s.answers[_index] == s.trueAnswers[_index]) {
+    s.getAnswStyle = function(_index) {
+      for (var i = 0; i < s.answers.length; i++) {
+        if (s.answers[_index] == s.trueAnswers[_index]) {
           return "green";
         } else {
-            return "red";
+          return "red";
         }
       }
     }
-      s.showCurrentPage = function(){
-        if(s.showTest){
-          s.showTest = false;
-          s.showAnswers = true;
-        } else {
-          s.showTest = true;
-          s.showAnswers = false;
-        }
+    s.showCurrentPage = function() {
+      if (s.showTest) {
+        s.showTest = false;
+        s.showAnswers = true;
+      } else {
+        s.showTest = true;
+        s.showAnswers = false;
       }
-    var testForm = document.getElementById("testForm").onsubmit = function(event){
+    }
+    s.showResults = function(event) {
       event.preventDefault();
       s.showCurrentPage();
       s.checkTest();
-      //s.getAnswStyle();
+      s.getAnswStyle()
     }
-    s.getTest = function(){
+    s.getTest = function() {
       s.showCurrentPage();
       s.resetResults();
     }

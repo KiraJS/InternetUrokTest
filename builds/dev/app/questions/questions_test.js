@@ -2,7 +2,7 @@
 
 describe('test.questions module', function() {
 
-  beforeEach(module('test.questions'));
+  beforeEach(module('test'));
 
   describe('Questions Controller', function() {
     var testCtrl;
