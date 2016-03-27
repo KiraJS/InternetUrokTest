@@ -11,7 +11,7 @@
       $log.debug('Theory Run');
     })
     .config(TheoryConfig)
-    .factory('theory', theoryFactory);
+    .factory('theoryFct', theoryFactory);
 
   /**
    * Tasks Factory

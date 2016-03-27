@@ -12,7 +12,7 @@
       $log.debug('Tasks Run');
     })
     .config(QuestionsConfig)
-    .factory('questions', questionsFactory);
+    .factory('questionsFct', questionsFactory);
 
   /**
    * Questions Factory
@@ -34,7 +34,7 @@
    *  Questions Controller
    */
   // @ngInject
-  function questionsController($log, $rootScope, questions) {
+  function questionsController($log, $rootScope, questionsFct) {
     $log.debug('statisticsController');
     var s = this;
     s.answers = [];
@@ -44,7 +44,7 @@
     s.score = 0;
     s.showTest = true;
     s.showAnswers = false;
-    s.questions = questions.getAllQuestion();
+    s.questions = questionsFct.getAllQuestion();
     s.questions.$loaded(function() {
       for (var i = 0; i < s.questions.length; i++) {
         s.answers[i] = null;

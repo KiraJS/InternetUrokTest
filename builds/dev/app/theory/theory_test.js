@@ -20,3 +20,15 @@ describe('test.theory module', function() {
     });
   });
 });
+
+
+describe("Theory Factory", function () {
+
+    beforeEach(module('test'));
+
+    it("factory should be initialized", function () {
+        angular.mock.inject(function (theoryFct) {
+          expect(theoryFct).toBeDefined();
+        });
+    })
+});
